@@ -5,7 +5,13 @@
     <button type="button" name="button" class="button" @click=getGifs()>Search</button>
 
     <div class="gif-container">
-      <img v-for="gif in gifs" :src="gif" :key="gif.id">
+      <div class="" v-for="gif in gifs" :key="gif.id">
+        <img :src="gif">
+        <p>
+          <a :href="gif">View: {{gif}}</a>
+        </p>
+        <br>
+      </div>
     </div>
 
   </div>
@@ -41,6 +47,7 @@ export default {
       });
     },
     buildGifs(json) {
+      console.log(json);
       this.gifs = json.data
         .map(gif => gif.id)
         .map(gifId => {
