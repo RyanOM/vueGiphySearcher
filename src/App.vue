@@ -28,8 +28,8 @@
                         <br>
                         <div class="extra content">
                             <div class="ui two buttons">
-                                <a class="ui basic green button" :href="gif">Open Gif</a>
-                                <button class="ui basic red button" v-clipboard:copy="gif">Copy URL</button>
+                                <a class="ui basic green button" :href="gif.url">Open Gif</a>
+                                <button class="ui basic red button" v-clipboard:copy="gif.url">Copy URL</button>
                             </div>
                         </div>
                         <br>
@@ -52,6 +52,7 @@
         },
         methods: {
             getGifs() {
+                this.gifs = [];
                 let apiKey = "VcHdtRwzxX3JIpmb2rZvyKfumVlDygZa";
                 let searchEndPoint = "https://api.giphy.com/v1/gifs/search?";
                 let limit = 12;
