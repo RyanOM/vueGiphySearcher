@@ -3,14 +3,23 @@
     <h1>Awesome Vuejs Gif Searcher</h1>
     <input v-model="searchTerm" v-on:keyup.enter="getGifs()" type="text" name="" value="">
     <button type="button" name="button" class="button" @click=getGifs()>Search</button>
+    <hr>
 
-    <div class="gif-container">
+    <div class="ui grid container">
       <div class="" v-for="gif in gifs" :key="gif.id">
-        <img :src="gif">
-        <p>
-          <a :href="gif">View: {{gif}}</a>
-        </p>
+        <div class="four wide column">
+      <div class="ui card" style="margin-top: 20px">
+        <div class="image"><img :src="gif"></div>
         <br>
+        <div class="extra content">
+          <div class="ui two buttons">
+            <a class="ui basic green button" :href="gif">Open Gif</a>
+            <button class="ui basic red button" v-clipboard:copy="gif">Copy URL</button>
+          </div>
+        </div>
+        <br>
+      </div>
+      </div>
       </div>
     </div>
 
@@ -30,7 +39,7 @@ export default {
     getGifs() {
       let apiKey = "VcHdtRwzxX3JIpmb2rZvyKfumVlDygZa";
       let searchEndPoint = "https://api.giphy.com/v1/gifs/search?";
-      let limit = 5;
+      let limit = 12;
 
       let url = `${searchEndPoint}&api_key=${apiKey}&q=${
         this.searchTerm
